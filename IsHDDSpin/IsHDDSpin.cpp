@@ -1,6 +1,6 @@
 ﻿#include <windows.h>
 #include <winioctl.h>
-#include <ntddscsi.h>  // ★これを追加
+#include <ntddscsi.h>
 
 #include <iostream>
 #include <cstdio>
@@ -83,7 +83,7 @@ bool CheckHddSpinState(int physicalDriveNumber) {
 }
 
 int main3() {
-    int driveNumber = 3; // PhysicalDrive1 をチェック
+    int driveNumber = 3;
     CheckHddSpinState(driveNumber);
     return 0;
 }
@@ -133,7 +133,7 @@ bool IsDriveSpinning(const wchar_t driveLetter, bool* pIsSpinning, DWORD* pLastE
     ATA_PASS_THROUGH_EX* pApt = (ATA_PASS_THROUGH_EX*)buffer;
     BYTE sectorCount = pApt->CurrentTaskFile[1];
 
-	// 0x00 → Sleep 0xFF/other → spinning
+	// 0x00 -> Sleep 0xFF/other -> spinning
     *pIsSpinning = (sectorCount != 0x00);
     return true;
 }
